@@ -1777,11 +1777,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log(this.$store.state.count);
-  },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['increment'])),
-  computed: Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['count'])
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['count']), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['sqrt'])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['increment']))
 });
 
 /***/ }),
@@ -36661,7 +36658,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("p", [_vm._v(_vm._s(_vm.count))]),
+    _c("p", [
+      _vm._v(
+        "The square root of " + _vm._s(_vm.count) + " is " + _vm._s(_vm.sqrt)
+      )
+    ]),
     _vm._v(" "),
     _c("button", { on: { click: _vm.increment } }, [_vm._v("+1")])
   ])
@@ -49179,6 +49180,18 @@ __webpack_require__.r(__webpack_exports__);
   mutations: {
     increment: function increment(state) {
       state.count++;
+    }
+  },
+  actions: {
+    increment: function increment(context) {
+      setTimeout(function () {
+        context.commit('increment');
+      }, 3000);
+    }
+  },
+  getters: {
+    sqrt: function sqrt(state) {
+      return Math.sqrt(state.count);
     }
   }
 });
